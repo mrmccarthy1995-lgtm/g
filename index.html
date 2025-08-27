@@ -8,39 +8,30 @@
 <style>
   :root{
     --bg:#f6f7fb; --card:#ffffff; --edge:#e6e9f2; --text:#0f172a; --muted:#475569;
-    --brand:#2563eb; --brand2:#22c55e; --accent:#f97316; --accent2:#a855f7; --accent3:#06b6d4;
+    --brand:#2563eb; --brand2:#22c55e;
   }
   *{box-sizing:border-box}
   body{margin:0;font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-       background:radial-gradient(900px 400px at -10% -10%, #e8f3ff 0, transparent 60%), var(--bg);
-       color:var(--text)}
+       background:var(--bg); color:var(--text)}
   a{color:var(--brand);text-decoration:none}
   .container{max-width:1040px;margin:0 auto;padding:18px 16px}
   .nav{display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;gap:10px;align-items:center;font-weight:900}
+  .brand{font-weight:900}
   .chip{font-size:12px;padding:6px 10px;border-radius:999px;background:#eef2ff;color:#1e40af;border:1px solid #dbe4ff}
   .hero-card{background:var(--card);border:1px solid var(--edge);border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(2,6,23,.06)}
   h1{font-size:clamp(26px,4vw,40px);margin:6px 0}
   .lead{color:var(--muted)}
   .btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--brand),#60a5fa);
-       border:0;border-radius:14px;padding:12px 18px;color:#fff;font-weight:900;cursor:pointer}
+       border:0;border-radius:14px;padding:12px 18px;color:#fff;font-weight:900;cursor:pointer;text-decoration:none}
   .btn.ghost{background:#fff;color:var(--text);border:1px solid var(--edge)}
   .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
   @media (max-width:720px){ .grid-2{grid-template-columns:1fr} }
   .card{background:var(--card);border:1px solid var(--edge);border-radius:16px;padding:16px;box-shadow:0 8px 24px rgba(2,6,23,.05)}
   .vendor-top{display:flex;gap:14px;align-items:center;margin-bottom:6px}
-  .logo{width:96px;height:96px;border-radius:20px;display:grid;place-items:center;
-        background:linear-gradient(180deg,#fff,#f1f5f9);border:1px solid var(--edge);
-        box-shadow:0 12px 24px rgba(2,6,23,.08), inset 0 2px 0 #ffffff}
+  .logo img{width:96px;height:96px;border-radius:16px;object-fit:contain;box-shadow:0 6px 14px rgba(0,0,0,.08)}
   .title{font-weight:900;font-size:18px}
   .sub{color:var(--muted);font-size:13px}
-  footer{padding:26px 0;color:#64748b}
-  /* --- Cartoon badge style (reusable) --- */
-  .badge{width:88px;height:88px}
-  .badge .plate{fill:#fdebd5}
-  .badge .rim{fill:#f8b88a}
-  .badge .ink{fill:#6b7280}
-  .badge .pop{fill:#ef4444}
+  footer{padding:26px 0;color:#64748b;text-align:center}
 </style>
 </head>
 <body>
@@ -51,9 +42,9 @@
 
 <main class="container">
   <div class="hero-card">
-    <span class="chip">New • Teen-friendly • Mobile-first</span>
+    <span class="chip">Teen-friendly • Mobile-first</span>
     <h1>Pick a vendor or grab the full pack.</h1>
-    <p class="lead">Clean cards, big logos, easy checkout. We email your files instantly.</p>
+    <p class="lead">We email your files instantly after checkout.</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
       <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_FULL" target="_blank" rel="noopener">Buy Full Pack</a>
       <a class="btn ghost" href="#vendors">See vendors</a>
@@ -66,164 +57,100 @@
 
   <div class="grid-2">
 
-    <!-- JBL Speaker Vendor -->
+    <!-- Speaker -->
     <article class="card">
       <div class="vendor-top">
-        <div class="logo">
-          <!-- badge speaker -->
-          <svg class="badge" viewBox="0 0 100 100">
-            <path class="rim" d="M20 18h60l10 14v36l-10 14H20L10 68V32z"/>
-            <path class="plate" d="M26 26h48l7 10v28l-7 10H26L19 64V36z"/>
-            <circle class="ink" cx="50" cy="56" r="18"/>
-            <circle fill="#fff" cx="50" cy="56" r="7"/>
-            <rect class="ink" x="39" y="32" width="22" height="10" rx="3"/>
-          </svg>
-        </div>
+        <div class="logo"><img src="images/speaker.png" alt="JBL Speaker Vendor"></div>
         <div style="flex:1">
           <div class="title">JBL Speaker Vendor</div>
           <div class="sub">Portable Bluetooth • Global</div>
         </div>
       </div>
-      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank">Buy</a>
     </article>
 
-    <!-- Headphones Vendor -->
+    <!-- Headphones -->
     <article class="card">
       <div class="vendor-top">
-        <div class="logo">
-          <!-- badge headphones -->
-          <svg class="badge" viewBox="0 0 100 100">
-            <path class="rim" d="M20 18h60l10 14v36l-10 14H20L10 68V32z"/>
-            <path class="plate" d="M26 26h48l7 10v28l-7 10H26L19 64V36z"/>
-            <path class="ink" d="M30 58a20 20 0 0 1 40 0v8h-8v-8a12 12 0 0 0-24 0v8h-8z"/>
-            <rect class="pop" x="26" y="58" width="14" height="16" rx="6"/>
-            <rect class="pop" x="60" y="58" width="14" height="16" rx="6"/>
-          </svg>
-        </div>
+        <div class="logo"><img src="images/headphones.png" alt="Headphones Vendor"></div>
         <div style="flex:1">
           <div class="title">Headphones Vendor</div>
           <div class="sub">Over-ear / ANC • UK/EU</div>
         </div>
       </div>
-      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank">Buy</a>
     </article>
 
-    <!-- LEGO Vendor -->
+    <!-- LEGO -->
     <article class="card">
       <div class="vendor-top">
-        <div class="logo">
-          <!-- badge brick -->
-          <svg class="badge" viewBox="0 0 100 100">
-            <path class="rim" d="M20 18h60l10 14v36l-10 14H20L10 68V32z"/>
-            <path class="plate" d="M26 40h48v28H26z"/>
-            <rect class="rim" x="30" y="30" width="14" height="10" rx="3"/>
-            <rect class="rim" x="56" y="30" width="14" height="10" rx="3"/>
-          </svg>
-        </div>
+        <div class="logo"><img src="images/lego.png" alt="LEGO Vendor"></div>
         <div style="flex:1">
-          <div class="title">LEGO Vendor (style)</div>
-          <div class="sub">Kits & parts • Asia</div>
+          <div class="title">LEGO Vendor</div>
+          <div class="sub">Kits & Parts • Asia</div>
         </div>
       </div>
-      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank">Buy</a>
     </article>
 
-    <!-- Hoodies Vendor -->
+    <!-- Hoodies -->
     <article class="card">
       <div class="vendor-top">
-        <div class="logo">
-          <!-- badge hoodie -->
-          <svg class="badge" viewBox="0 0 100 100">
-            <path class="rim" d="M20 18h60l10 14v36l-10 14H20L10 68V32z"/>
-            <path class="plate" d="M30 36c0-10 10-18 20-18s20 8 20 18v34H30V36z"/>
-            <rect class="ink" x="44" y="44" width="12" height="12" rx="2"/>
-          </svg>
-        </div>
+        <div class="logo"><img src="images/hoodies.png" alt="Hoodies Vendor"></div>
         <div style="flex:1">
           <div class="title">Hoodies Vendor</div>
           <div class="sub">450gsm / puff print • UK/EU</div>
         </div>
       </div>
-      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank">Buy</a>
     </article>
 
-    <!-- Watches Vendor -->
+    <!-- Watches -->
     <article class="card">
       <div class="vendor-top">
-        <div class="logo">
-          <!-- badge watch -->
-          <svg class="badge" viewBox="0 0 100 100">
-            <path class="rim" d="M20 18h60l10 14v36l-10 14H20L10 68V32z"/>
-            <circle class="plate" cx="50" cy="56" r="18"/>
-            <path class="ink" d="M50 56V48M50 56l8 4" stroke="#6b7280" stroke-width="4" stroke-linecap="round"/>
-            <rect class="rim" x="41" y="30" width="18" height="8" rx="2"/>
-            <rect class="rim" x="41" y="74" width="18" height="8" rx="2"/>
-          </svg>
-        </div>
+        <div class="logo"><img src="images/watch.png" alt="Watches Vendor"></div>
         <div style="flex:1">
           <div class="title">Watches Vendor</div>
-          <div class="sub">Quartz / automatic • Global</div>
+          <div class="sub">Quartz / Automatic • Global</div>
         </div>
       </div>
-      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank">Buy</a>
     </article>
 
-    <!-- Phone Vendor -->
+    <!-- Phone -->
     <article class="card">
       <div class="vendor-top">
-        <div class="logo">
-          <!-- badge phone -->
-          <svg class="badge" viewBox="0 0 100 100">
-            <path class="rim" d="M20 18h60l10 14v36l-10 14H20L10 68V32z"/>
-            <rect class="plate" x="38" y="28" width="24" height="48" rx="6"/>
-            <circle class="ink" cx="50" cy="68" r="2.8"/>
-          </svg>
-        </div>
+        <div class="logo"><img src="images/phone.png" alt="Phone Vendor"></div>
         <div style="flex:1">
           <div class="title">Phone Vendor</div>
-          <div class="sub">TPU/PC cases • Asia</div>
+          <div class="sub">TPU/PC Cases • Asia</div>
         </div>
       </div>
-      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank">Buy</a>
     </article>
 
-    <!-- Bags Vendor -->
+    <!-- Bags -->
     <article class="card">
       <div class="vendor-top">
-        <div class="logo">
-          <!-- badge bag -->
-          <svg class="badge" viewBox="0 0 100 100">
-            <path class="rim" d="M20 18h60l10 14v36l-10 14H20L10 68V32z"/>
-            <rect class="plate" x="30" y="44" width="40" height="24" rx="6"/>
-            <path class="ink" d="M38 44a12 12 0 0 1 24 0" stroke="#6b7280" stroke-width="4" fill="none"/>
-          </svg>
-        </div>
+        <div class="logo"><img src="images/bags.png" alt="Bags Vendor"></div>
         <div style="flex:1">
           <div class="title">Bags Vendor</div>
-          <div class="sub">Totes / backpacks • EU</div>
+          <div class="sub">Totes / Backpacks • EU</div>
         </div>
       </div>
-      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank">Buy</a>
     </article>
 
-    <!-- Glasses Vendor -->
+    <!-- Glasses -->
     <article class="card">
       <div class="vendor-top">
-        <div class="logo">
-          <!-- badge glasses -->
-          <svg class="badge" viewBox="0 0 100 100">
-            <path class="rim" d="M20 18h60l10 14v36l-10 14H20L10 68V32z"/>
-            <circle class="plate" cx="36" cy="56" r="12"/>
-            <circle class="plate" cx="64" cy="56" r="12"/>
-            <rect class="ink" x="36" y="54" width="28" height="4"/>
-          </svg>
-        </div>
+        <div class="logo"><img src="images/glasses.png" alt="Glasses Vendor"></div>
         <div style="flex:1">
           <div class="title">Glasses Vendor</div>
-          <div class="sub">Sunglasses / optical • Global</div>
+          <div class="sub">Sunglasses / Optical • Global</div>
         </div>
       </div>
-      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank">Buy</a>
     </article>
 
   </div>
@@ -235,7 +162,7 @@
       <b>Want everything at once?</b>
       <div class="lead" style="margin-top:2px">Get the full PDF + CSV with all vendors and updates.</div>
     </div>
-    <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_FULL" target="_blank" rel="noopener">Buy Full Pack</a>
+    <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_FULL" target="_blank">Buy Full Pack</a>
   </div>
 </section>
 
