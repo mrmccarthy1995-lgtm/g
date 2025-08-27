@@ -4,53 +4,260 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>VendorVault — Access</title>
-<meta name="description" content="Pay once. Get the vendor pack by email.">
+<meta name="description" content="Pay once. Get vendors by email.">
 <style>
-  :root{--bg:#0b0f17;--card:#0f1522;--text:#e5e7eb;--muted:#9ca3af;--brand:#22d3ee}
-  *{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(120deg,var(--bg),#070b12 60%);color:var(--text)}
-  .container{max-width:1000px;margin:0 auto;padding:20px 16px}
+  :root{
+    --bg:#070b12; --bg2:#0b1020; --card:#0f1524; --edge:#1f2b4a;
+    --text:#eef2ff; --muted:#a5b4fc; --brand:#22d3ee; --brand2:#06b6d4; --pop:#a78bfa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+       color:var(--text); background: radial-gradient(1200px 500px at 10% -10%, rgba(167,139,250,.18), transparent 50%), linear-gradient(180deg,var(--bg),var(--bg2));}
+  a{color:var(--brand); text-decoration:none}
+  .container{max-width:1040px;margin:0 auto;padding:18px 16px}
   .nav{display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;gap:8px;align-items:center;font-weight:900}
-  .card{background:linear-gradient(180deg,var(--card),#0b111d);border:1px solid #1c2941;border-radius:16px;padding:16px}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px} @media(max-width:820px){.grid{grid-template-columns:1fr}}
-  .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,#22d3ee,#06b6d4);border:0;border-radius:12px;padding:12px 16px;color:#001018;font-weight:900;text-decoration:none;justify-content:center}
-  .small{color:var(--muted);font-size:13px}
-  footer{padding:28px 0;color:#94a3b8}
+  .brand{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:.2px}
+  .brand-badge{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:10px;background:linear-gradient(180deg,#1b2540,#0e1630); border:1px solid var(--edge)}
+  .chip{font-size:12px;padding:6px 10px;border-radius:999px;background:#0d1730;border:1px solid var(--edge);color:#9bd9ff}
+  .hero{margin-top:8px}
+  .hero-card{background:linear-gradient(180deg,var(--card),#0b1226);border:1px solid var(--edge);border-radius:16px;padding:18px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  h1{font-size:clamp(26px,4vw,42px);margin:6px 0}
+  .lead{color:var(--muted);font-size:clamp(14px,2vw,18px)}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--brand),var(--brand2));
+       border:0;border-radius:14px;padding:12px 18px;color:#001018;font-weight:900;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--edge)}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media (max-width:720px){ .grid-2{grid-template-columns:1fr} }
+  .card{background:linear-gradient(180deg,var(--card),#0b1226);border:1px solid var(--edge);border-radius:16px;padding:14px}
+  .vendor-top{display:flex;gap:12px;align-items:center;margin-bottom:4px}
+  .logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:#0d1834;border:1px solid var(--edge)}
+  .title{font-weight:900}
+  .muted{color:#bcd0ff;font-size:12px}
+  .icon svg{display:block}
+  .tag{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#0e1732;border:1px solid var(--edge);color:#9bd9ff;margin-right:6px}
+  footer{padding:26px 0;color:#9fb5ff}
 </style>
 </head>
 <body>
-  <header class="container nav">
-    <div class="brand">🔐 VendorVault</div>
-    <nav><a href="#pricing" style="color:#e5e7eb;text-decoration:none">Pricing</a></nav>
-  </header>
+<header class="container nav">
+  <div class="brand">
+    <span class="brand-badge">🔐</span> VendorVault
+  </div>
+  <nav><a href="#vendors" style="color:#eef2ff">Vendors</a></nav>
+</header>
 
-  <main class="container">
-    <section class="card" style="margin-bottom:14px">
-      <h1 style="margin:6px 0">Pay once. The vendor pack arrives in your inbox.</h1>
-      <p class="small">We email the full directory (PDF + CSV) after checkout. No on-site unlock needed.</p>
-    </section>
+<main class="container hero">
+  <div class="hero-card">
+    <span class="chip">New • Teen-friendly • Mobile-first</span>
+    <h1>Pay once. <span style="color:var(--brand)">Grab vendors</span> straight to your inbox.</h1>
+    <p class="lead">Choose a single vendor or the full pack. We email the files instantly after checkout.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <!-- Full pack -->
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_FULL" target="_blank" rel="noopener">Buy Full Pack</a>
+      <a class="btn ghost" href="#vendors">See all vendors</a>
+    </div>
+  </div>
+</main>
 
-    <!-- Pricing Section -->
-    <section id="pricing">
-      <div class="grid">
-        <div class="card">
-          <h3>Single Vendor — £9</h3>
-          <ul class="small"><li>Pick 1 vendor</li><li>Email support</li></ul>
-          <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy with Stripe</a>
+<section id="vendors" class="container" style="margin-top:18px">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <h2 style="margin:0">Vendors</h2>
+    <span class="muted">2 per row • more coming</span>
+  </div>
+
+  <!-- Vendor Grid -->
+  <div class="grid-2">
+
+    <!-- Headphones -->
+    <article class="card">
+      <div class="vendor-top">
+        <div class="logo icon" aria-hidden="true">
+          <!-- Headphones icon -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M4 13a8 8 0 0 1 16 0" stroke="#22d3ee" stroke-width="2" />
+            <rect x="3" y="12" width="5" height="8" rx="2" fill="#a78bfa"/>
+            <rect x="16" y="12" width="5" height="8" rx="2" fill="#22d3ee"/>
+          </svg>
         </div>
-        <div class="card">
-          <h3>Full Pack — £39</h3>
-          <ul class="small"><li>All vendors unlocked</li><li>Lifetime updates</li></ul>
-          <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_FULL" target="_blank" rel="noopener">Buy with Stripe</a>
+        <div style="flex:1">
+          <div class="title">Headphone Hub</div>
+          <div class="muted">Over-ear / ANC • UK/EU</div>
         </div>
       </div>
-      <p class="small" style="margin-top:10px">After payment, Stripe will send you to our success page to confirm your email.</p>
-    </section>
-  </main>
+      <div style="margin:6px 0 10px">
+        <span class="tag">#audio</span><span class="tag">#anc</span>
+      </div>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+    </article>
 
-  <footer class="container">
-    © <span id="y"></span> VendorVault · <a style="color:#9bd9ff" href="success.html">Success page (preview)</a>
-  </footer>
+    <!-- JBL Speakers -->
+    <article class="card">
+      <div class="vendor-top">
+        <div class="logo icon" aria-hidden="true">
+          <!-- Speaker icon -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <rect x="5" y="3" width="14" height="18" rx="2" fill="#22d3ee"/>
+            <circle cx="12" cy="14" r="4" fill="#0f1524" />
+            <circle cx="12" cy="7" r="2" fill="#0f1524" />
+          </svg>
+        </div>
+        <div style="flex:1">
+          <div class="title">JBL Speaker Connect</div>
+          <div class="muted">Portable BT • Global</div>
+        </div>
+      </div>
+      <div style="margin:6px 0 10px">
+        <span class="tag">#speaker</span><span class="tag">#bluetooth</span>
+      </div>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+    </article>
+
+    <!-- LEGO -->
+    <article class="card">
+      <div class="vendor-top">
+        <div class="logo icon" aria-hidden="true">
+          <!-- Lego brick icon -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <rect x="4" y="9" width="16" height="9" rx="2" fill="#a78bfa"/>
+            <rect x="6" y="6" width="4" height="3" rx="1" fill="#22d3ee"/>
+            <rect x="14" y="6" width="4" height="3" rx="1" fill="#22d3ee"/>
+          </svg>
+        </div>
+        <div style="flex:1">
+          <div class="title">BrickWorks (LEGO-style)</div>
+          <div class="muted">Kits / parts • Asia</div>
+        </div>
+      </div>
+      <div style="margin:6px 0 10px">
+        <span class="tag">#bricks</span><span class="tag">#kits</span>
+      </div>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+    </article>
+
+    <!-- Jumpers/Hoodies -->
+    <article class="card">
+      <div class="vendor-top">
+        <div class="logo icon" aria-hidden="true">
+          <!-- Hoodie icon -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M6 9c0-3 3-5 6-5s6 2 6 5v9H6V9z" fill="#22d3ee"/>
+            <path d="M10 9h4v4h-4z" fill="#0f1524"/>
+          </svg>
+        </div>
+        <div style="flex:1">
+          <div class="title">Boxy Hoodies</div>
+          <div class="muted">450gsm / puff print • UK/EU</div>
+        </div>
+      </div>
+      <div style="margin:6px 0 10px">
+        <span class="tag">#streetwear</span><span class="tag">#cut&sew</span>
+      </div>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+    </article>
+
+    <!-- Watches -->
+    <article class="card">
+      <div class="vendor-top">
+        <div class="logo icon" aria-hidden="true">
+          <!-- Watch icon -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="5" fill="#a78bfa"/>
+            <path d="M12 12V9M12 12l3 2" stroke="#0f1524" stroke-width="2" stroke-linecap="round"/>
+            <rect x="9" y="2" width="6" height="3" rx="1" fill="#22d3ee"/>
+            <rect x="9" y="19" width="6" height="3" rx="1" fill="#22d3ee"/>
+          </svg>
+        </div>
+        <div style="flex:1">
+          <div class="title">TimeCraft</div>
+          <div class="muted">Quartz / auto • Global</div>
+        </div>
+      </div>
+      <div style="margin:6px 0 10px">
+        <span class="tag">#watches</span><span class="tag">#oem</span>
+      </div>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+    </article>
+
+    <!-- Phone -->
+    <article class="card">
+      <div class="vendor-top">
+        <div class="logo icon" aria-hidden="true">
+          <!-- Phone icon -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <rect x="7" y="3" width="10" height="18" rx="2" fill="#22d3ee"/>
+            <circle cx="12" cy="18" r="1.2" fill="#0f1524"/>
+          </svg>
+        </div>
+        <div style="flex:1">
+          <div class="title">PhoneCase Lab</div>
+          <div class="muted">TPU/PC cases • Asia</div>
+        </div>
+      </div>
+      <div style="margin:6px 0 10px">
+        <span class="tag">#phone</span><span class="tag">#cases</span>
+      </div>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+    </article>
+
+    <!-- Bags -->
+    <article class="card">
+      <div class="vendor-top">
+        <div class="logo icon" aria-hidden="true">
+          <!-- Bag icon -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <rect x="4" y="8" width="16" height="10" rx="2" fill="#a78bfa"/>
+            <path d="M9 8a3 3 0 0 1 6 0" stroke="#22d3ee" stroke-width="2"/>
+          </svg>
+        </div>
+        <div style="flex:1">
+          <div class="title">CarryKind</div>
+          <div class="muted">Totes / backpacks • EU</div>
+        </div>
+      </div>
+      <div style="margin:6px 0 10px">
+        <span class="tag">#bags</span><span class="tag">#accessories</span>
+      </div>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+    </article>
+
+    <!-- Glasses -->
+    <article class="card">
+      <div class="vendor-top">
+        <div class="logo icon" aria-hidden="true">
+          <!-- Glasses icon -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <circle cx="8" cy="13" r="3" fill="#22d3ee"/>
+            <circle cx="16" cy="13" r="3" fill="#22d3ee"/>
+            <rect x="8" y="12" width="8" height="2" fill="#a78bfa"/>
+          </svg>
+        </div>
+        <div style="flex:1">
+          <div class="title">FrameForge</div>
+          <div class="muted">Sunglasses / optical • Global</div>
+        </div>
+      </div>
+      <div style="margin:6px 0 10px">
+        <span class="tag">#glasses</span><span class="tag">#uv400</span>
+      </div>
+      <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy</a>
+    </article>
+
+  </div>
+</section>
+
+<section class="container" style="margin:18px 0">
+  <div class="card" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+    <div>
+      <b>Prefer everything at once?</b>
+      <div class="muted">Get the full PDF + CSV with all vendors and updates.</div>
+    </div>
+    <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_FULL" target="_blank" rel="noopener">Buy Full Pack</a>
+  </div>
+</section>
+
+<footer class="container">
+  © <span id="y"></span> VendorVault · <a href="success.html">Success page</a>
+</footer>
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
