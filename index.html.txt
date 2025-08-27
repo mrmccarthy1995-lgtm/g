@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VendorVault — Access</title>
+<meta name="description" content="Pay once. Get the vendor pack by email.">
+<style>
+  :root{--bg:#0b0f17;--card:#0f1522;--text:#e5e7eb;--muted:#9ca3af;--brand:#22d3ee}
+  *{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(120deg,var(--bg),#070b12 60%);color:var(--text)}
+  .container{max-width:1000px;margin:0 auto;padding:20px 16px}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;gap:8px;align-items:center;font-weight:900}
+  .card{background:linear-gradient(180deg,var(--card),#0b111d);border:1px solid #1c2941;border-radius:16px;padding:16px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px} @media(max-width:820px){.grid{grid-template-columns:1fr}}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,#22d3ee,#06b6d4);border:0;border-radius:12px;padding:12px 16px;color:#001018;font-weight:900;text-decoration:none;justify-content:center}
+  .small{color:var(--muted);font-size:13px}
+  footer{padding:28px 0;color:#94a3b8}
+</style>
+</head>
+<body>
+  <header class="container nav">
+    <div class="brand">🔐 VendorVault</div>
+    <nav><a href="#pricing" style="color:#e5e7eb;text-decoration:none">Pricing</a></nav>
+  </header>
+
+  <main class="container">
+    <section class="card" style="margin-bottom:14px">
+      <h1 style="margin:6px 0">Pay once. The vendor pack arrives in your inbox.</h1>
+      <p class="small">We email the full directory (PDF + CSV) after checkout. No on-site unlock needed.</p>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing">
+      <div class="grid">
+        <div class="card">
+          <h3>Single Vendor — £9</h3>
+          <ul class="small"><li>Pick 1 vendor</li><li>Email support</li></ul>
+          <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE" target="_blank" rel="noopener">Buy with Stripe</a>
+        </div>
+        <div class="card">
+          <h3>Full Pack — £39</h3>
+          <ul class="small"><li>All vendors unlocked</li><li>Lifetime updates</li></ul>
+          <a class="btn" href="REPLACE_WITH_STRIPE_PAYMENT_LINK_FULL" target="_blank" rel="noopener">Buy with Stripe</a>
+        </div>
+      </div>
+      <p class="small" style="margin-top:10px">After payment, Stripe will send you to our success page to confirm your email.</p>
+    </section>
+  </main>
+
+  <footer class="container">
+    © <span id="y"></span> VendorVault · <a style="color:#9bd9ff" href="success.html">Success page (preview)</a>
+  </footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
