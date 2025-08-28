@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your Cart — VendorVault</title>
+<style>
+  :root{--bg:#f6f7fb; --card:#ffffff; --edge:#e6e9f2; --text:#0f172a; --muted:#475569; --brand:#2563eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;background:var(--bg);color:var(--text)}
+  .container{max-width:1040px;margin:0 auto;padding:18px 16px}
+  a{color:var(--brand);text-decoration:none}
+  .card{background:var(--card);border:1px solid var(--edge);border-radius:16px;padding:16px;box-shadow:0 8px 24px rgba(2,6,23,.05)}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .item{display:flex;align-items:center;gap:12px;border:1px solid var(--edge);border-radius:12px;padding:10px;margin:8px 0}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:#2563eb;border:0;border-radius:12px;padding:10px 14px;color:#fff;font-weight:900;cursor:pointer;text-decoration:none}
+  .btn.ghost{background:#fff;color:var(--text);border:1px solid var(--edge)}
+  .muted{color:var(--muted);font-size:13px}
+  .danger{background:#ef4444}
+</style>
+</head>
+<body>
+  <main class="container">
+    <div class="row" style="margin-bottom:10px">
+      <h1 style="margin:0">Your Cart</h1>
+      <a href="index.html">← Continue shopping</a>
+    </div>
+
+    <div id="cartCard" class="card">
+      <div id="items"></div>
+      <div id="empty" class="muted" style="display:none">Your cart is empty.</div>
+      <hr style="border:none;border-top:1px solid var(--edge);margin:12px 0">
+      <div class="row"><div><b>Subtotal</b></div><div><b>£<span id="total">0</span></b></div></div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn ghost" onclick="clearCart()">Clear cart</button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a id="btnSingle" class="btn" href="#" target="_blank" rel="noopener">Checkout (Single Vendors)</a>
+          <a id="btnFull" class="btn" href="#" target="_blank" rel="noopener">Checkout (Full Pack)</a>
+        </div>
+      </div>
+      <p id="hint" class="muted" style="margin-top:8px;display:none"></p>
+    </div>
+  </main>
+
+<script>
+  const SINGLE_PRICE = 9;   // £
+  const FULL_PRICE   = 39;  // £
+  const STRIPE_SINGLE = "REPLACE_WITH_STRIPE_PAYMENT_LINK_SINGLE";
+  const STRIPE_FULL   = "REPLACE_WITH_STRIPE_PAYMENT_LINK_FULL";
+
+  const store = {
+    get(k, f){ try { return JSON.parse(localStorage.getItem(k)) ?? f } catch { return f } },
+    set(k, v){ localStorage.setItem(k, JSON.stringify(v)) }
+  };
+
+  function getCart(){ return store.get('vv-cart', []); }
+  function setCart(items){ store.set('vv-cart', items); render(); }
+
+  function removeAt(i){
+    const c = getCart();
+    c.splice(i,1);
+    setCart(c);
+  }
+
+  function clearCart(){ setCart([]); }
+
+  function render(){
+    const itemsEl = document.getElementById('items');
+    const emptyEl = document.getElementById('empty');
+    const totalEl = document.getElementById('total');
+    const btnSingle = document.getElementById('btnSingle');
+    const btnFull = document.getElementById('btnFull');
+    const hint = document.getElementById('hint');
+
+    const cart = getCart();
+    itemsEl.innerHTML = "";
+    let total = 0;
+    let hasFull = false;
+    let vendorCount = 0;
+
+    if(!cart.length){
+      emptyEl.style.display="block";
+      btnSingle.style.display="none";
+      btnFull.style.display="none";
+      hint.style.display="none";
+      totalEl.textContent = "0";
+      return;
+    } else {
+      emptyEl.style.display="none";
+    }
+
+    cart.forEach((it, i)=>{
+      if(it.type==='full'){ hasFull = true; total += FULL_PRICE; }
+      else { vendorCount++; total += SINGLE_PRICE; }
+      const div = document.createElement('div');
+      div.className = "item";
+      div.innerHTML = `
+        <div>${it.type==='full' ? 'Full Pack' : it.name}</div>
+        <div style="margin-left:auto">£${it.type==='full'?FULL_PRICE:SINGLE_PRICE}</div>
+        <button class="btn danger" onclick="removeAt(${i})">Remove</button>
+      `;
+      itemsEl.appendChild(div);
+    });
+
+    totalEl.textContent = total.toFixed(2);
+
+    // show the right checkout buttons
+    if(hasFull){
+      btnFull.style.display = "inline-flex";
+      btnFull.href = STRIPE_FULL;
+      btnSingle.style.display = "none";
+      hint.style.display = "none";
+    } else {
+      btnSingle.style.display = "inline-flex";
+      btnSingle.href = STRIPE_SINGLE;
+      btnFull.style.display = "none";
+      // helper note since Payment Links can't auto-set quantity
+      hint.style.display = "block";
+      hint.textContent = `At checkout, set quantity to ${vendorCount} for Single Vendor plan.`;
+    }
+  }
+
+  render();
+</script>
+</body>
+</html>
